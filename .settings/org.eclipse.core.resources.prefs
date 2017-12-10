@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/main/java/spring_web_map/config/ApplicationContextConfig.java=UTF-8
+encoding//src/main/java/spring_web_map/config/SpringWebAppInitializer.java=UTF-8
+encoding//src/main/java/spring_web_map/config/WebMvcConfig.java=UTF-8
+encoding//src/main/java/spring_web_map/config/WebSecurityConfig.java=UTF-8
+encoding//src/main/java/spring_web_map/model/UserInfo.java=UTF-8
+encoding//src/main/webapp/WEB-INF/pages/logoutSuccessfulPage.jsp=UTF-8

@@ -1,0 +1,8 @@
+spring_web_map\dao\UserInfoDAO.class
+spring_web_map\authentication\MyUserDetailsService.class
+spring_web_map\config\WebMvcConfig.class
+spring_web_map\controller\MainPageController.class
+spring_web_map\entity\UserRole.class
+spring_web_map\entity\User.class
+spring_web_map\config\WebSecurityConfig.class
+spring_web_map\model\UserInfo.class
