@@ -1,4 +1,4 @@
-ul {
+#menuLinks {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -7,16 +7,16 @@ ul {
 	box-shadow: 1px 1px 3px grey;
 }
 
-li {
+#menuLinks li {
 	float: left;
 	border-right: 1px solid #bbb;
 }
 
-li:last-child {
+#menuLinks li:last-child {
 	border-right: none;
 }
 
-li a {
+#menuLinks li a {
 	display: block;
 	color: white;
 	text-align: center;
@@ -24,10 +24,10 @@ li a {
 	text-decoration: none;
 }
 
-li a:not (.active ):hover {
+#menuLinks li a:not (.active ):hover {
 	background-color: #111;
 }
 
 .active {
-	background-color: #7D9DC1;
+	background-color: #7F9DC3;
 }

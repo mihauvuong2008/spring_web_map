@@ -65,6 +65,17 @@ public class MainPageController {
 		return "userInfoPage";
 	}
 
+	@RequestMapping(value = "/userManager", method = RequestMethod.GET)
+	public String userManager(Model model, Principal principal) {
+
+		// Sau khi user login thanh cong se co principal
+		String userName = principal.getName();
+
+		System.out.println("User Name: " + userName);
+
+		return "userManager";
+	}
+
 	@RequestMapping("/lienhe")
 	public String lienhe(Model model) {
 

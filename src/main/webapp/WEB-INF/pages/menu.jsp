@@ -14,12 +14,14 @@
 		<li id='link2'><a
 			href=${pageContext.request.contextPath}/thietbi_cauhinh>Thiết bị
 				- Hạ tầng</a></li>
-		<li id='link4'><a href=${pageContext.request.contextPath}/lienhe>Liên
-				hệ</a></li>
 		<li id='link5'><a
 			href=${pageContext.request.contextPath}/userInfo>Tài khoản</a></li>
+		<li id='link6'><a
+			href=${pageContext.request.contextPath}/userManager>Quản trị</a></li>
 		<li style="float: right"><a
 			href=${pageContext.request.contextPath}/logout>Đăng xuất</a></li>
+		<li id='link4'><a href=${pageContext.request.contextPath}/lienhe>Liên
+				hệ</a></li>
 	</ul>
 </body>
 </html>

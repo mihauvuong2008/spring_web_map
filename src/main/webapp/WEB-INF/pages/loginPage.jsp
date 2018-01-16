@@ -7,8 +7,6 @@
 
 <title>Login</title>
 <link rel="stylesheet" type="text/css"
-	href=${pageContext.request.contextPath}/css/styles.css />
-<link rel="stylesheet" type="text/css"
 	href=${pageContext.request.contextPath}/css/login_form_style.css />
 <script type="text/javascript"
 	src=${pageContext.request.contextPath}/js/common.js></script>
