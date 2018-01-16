@@ -28,57 +28,11 @@
 	<!-- 	<a class="skiplink" href="#map">Go to map</a> -->
 
 	<div id="container">
-		<div id="map" class="map" tabindex="0"></div>
 
-		<div class="leaflet-top leaflet-right">
-			<div class="leaflet-control-grid map-tooltip leaflet-control"
-				style="display: none;">
-				<a class="close" href="#" title="close">close</a>
-				<div class="map-tooltip-content"></div>
-			</div>
-			<div
-				class="leaflet-control-mapbox-geocoder leaflet-bar leaflet-control">
-				<a
-					style="background-image:
-		url(${pageContext.request.contextPath}/img/iconsearch.png);"
-					class="leaflet-control-mapbox-geocoder-toggle mapbox-icon mapbox-icon-geocoder"
-					href="#">&nbsp;</a>
-				<div class="leaflet-control-mapbox-geocoder-results"></div>
-				<div class="leaflet-control-mapbox-geocoder-wrap">
-					<form class="leaflet-control-mapbox-geocoder-form">
-						<input class="" placeholder="Search" type="text">
-					</form>
-				</div>
-			</div>
-			<div class="leaflet-draw leaflet-control">
-				<div class="leaflet-draw-section">
-					<div
-						class="leaflet-draw-toolbar leaflet-bar leaflet-draw-toolbar-top leaflet-draw-toolbar-nobottom">
-						<a class="leaflet-draw-draw-polyline" href="#"
-							title="Draw a polyline"></a><a class="leaflet-draw-draw-polygon"
-							href="#" title="Draw a polygon"></a><a
-							class="leaflet-draw-draw-rectangle" href="#"
-							title="Draw a rectangle"></a><a
-							class="leaflet-draw-draw-marker leaflet-draw-toolbar-button-enabled"
-							href="#" title="Draw a marker"></a>
-					</div>
-					<ul class="leaflet-draw-actions leaflet-draw-actions-bottom"
-						style="top: 78px; display: block;">
-						<li class=""><a class="" href="#" title="Cancel drawing">Cancel</a></li>
-					</ul>
-				</div>
-				<div class="leaflet-draw-section">
-					<div class="leaflet-draw-toolbar leaflet-bar">
-						<a class="leaflet-draw-edit-edit" href="#" title="Edit layers."></a><a
-							class="leaflet-draw-edit-remove" href="#" title="Delete layers."></a>
-					</div>
-					<ul class="leaflet-draw-actions" style="top: 0px; display: none;">
-						<li class=""><a class="" href="#" title="Save changes.">Save</a></li>
-						<li class=""><a class="" href="#"
-							title="Cancel editing, discards all changes.">Cancel</a></li>
-					</ul>
-				</div>
-			</div>
+		<div id="map" class="map" tabindex="0"></div>
+ 
+		<div id="tool">
+		
 		</div>
 	</div>
 	<script>
