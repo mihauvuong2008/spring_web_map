@@ -28,9 +28,7 @@ public class UserInfoDAO {
 
 		Query query = session.createQuery(sql);
 		query.setParameter("username", userName);
-		System.out.println(query.toString());
 		Object rs = query.uniqueResult();
-		System.out.println(rs.toString());
 		return (UserInfo) rs;
 	}
 

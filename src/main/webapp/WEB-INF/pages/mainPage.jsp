@@ -30,10 +30,8 @@
 	<div id="container">
 
 		<div id="map" class="map" tabindex="0"></div>
- 
-		<div id="tool">
-		
-		</div>
+
+		<div id="tool"></div>
 	</div>
 	<script>
 		var extent4269 = [ 11510897, 909947, 12211990, 1647390 ];
@@ -90,6 +88,7 @@
 			})
 		});
 
+		
 		// 		map.addLayer(linelayer);
 		// 		map.addLayer(roadslayer);
 		window.onresize = function() {
