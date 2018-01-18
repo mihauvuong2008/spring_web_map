@@ -21,7 +21,7 @@ public class UserInfoDAO {
 	private SessionFactory sessionFactory;
 
 	public UserInfo findUserInfo(String userName) {
-		String sql = "Select new " + UserInfo.class.getName() + "(u.username,u.password) "//
+		String sql = "Select new " + UserInfo.class.getName() + "(u.username,u.password,u.hoten,u.ngaysinh,u.lienhe,u.gioithieu,u.last_modify) "//
 				+ " from " + User.class.getName() + " u where u.username = :username";
 
 		Session session = sessionFactory.getCurrentSession();
@@ -29,6 +29,8 @@ public class UserInfoDAO {
 		Query query = session.createQuery(sql);
 		query.setParameter("username", userName);
 		Object rs = query.uniqueResult();
+		UserInfo rss = (UserInfo) rs;
+		System.out.println(rss.toString());
 		return (UserInfo) rs;
 	}
 
