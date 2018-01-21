@@ -16,6 +16,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import spring_web_map.dao.UserInfoDAO;
+import spring_web_map.model.UserInfo;
 
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -87,13 +88,14 @@ public class ApplicationContextConfig {
 			properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
 			properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 			properties.put("current_session_context_class", env.getProperty("current_session_context_class"));
-
+			
 			LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 
 			// Package contain entity classes
 			// Package chứa các entity class.
 			factoryBean.setPackagesToScan(new String[] { "spring_web_map.entity" });
 			factoryBean.setDataSource(dataSource);
+			factoryBean.setAnnotatedClasses(UserInfo.class);
 			factoryBean.setHibernateProperties(properties);
 			factoryBean.afterPropertiesSet();
 			//
@@ -105,7 +107,6 @@ public class ApplicationContextConfig {
 			e.printStackTrace();
 			throw e;
 		}
-
 	}
 
 	// Hibernate Transaction Manager
@@ -115,6 +116,12 @@ public class ApplicationContextConfig {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 
 		return transactionManager;
+	}
+
+	// Load property in message/validator.properties
+	@Bean(name = "userInfoDAO")
+	public UserInfoDAO getApplicantDAO() {
+		return new UserInfoDAO();
 	}
 
 }

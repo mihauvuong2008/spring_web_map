@@ -1,11 +1,13 @@
-C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\model\UserInfo.java
 C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\entity\User.java
-C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\authentication\MyUserDetailsService.java
 C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\config\SpringSecurityInitializer.java
 C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\dao\UserInfoDAO.java
-C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\controller\MainPageController.java
 C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\entity\UserRole.java
+C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\model\TuyencapInfo.java
+C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\config\SpringWebAppInitializer.java
+C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\model\UserInfo.java
+C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\validator\UserValidator.java
+C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\controller\MainPageController.java
+C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\authentication\MyDBAuthenticationService.java
 C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\config\ApplicationContextConfig.java
 C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\config\WebMvcConfig.java
-C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\config\SpringWebAppInitializer.java
 C:\Users\ngocdong\eclipse-workspace\spring_web_map\src\main\java\spring_web_map\config\WebSecurityConfig.java

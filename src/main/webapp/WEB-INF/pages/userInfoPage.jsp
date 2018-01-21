@@ -12,9 +12,7 @@
 
 <body>
 	<jsp:include page="menu.jsp" />
-
 	<script>
-		// hightlight menu ÄÃ£ chá»n
 		setActiveLink("link5");
 	</script>
 
@@ -45,74 +43,8 @@
 				id="linkUseraccount" href=${pageContext.request.contextPath}/logout
 				target="_blank">Log out</a>
 
+			<jsp:include page="userView.jsp" />
 
-			<div class="row">
-				<div class="col-md-6">
-					<strong>Information</strong><br>
-					<div class="table-responsive">
-						<table
-							class="table table-condensed table-responsive table-user-information">
-							<tbody>
-								<tr>
-									<td><strong> <span
-											class="glyphicon glyphicon-asterisk text-primary"></span> Mã
-											định danh
-									</strong></td>
-									<td class="text-primary">123456789</td>
-								</tr>
-								<tr>
-									<td><strong> <span
-											class="glyphicon glyphicon-user  text-primary"></span> Họ tên
-									</strong></td>
-									<td class="text-primary">Nguyễn văn a</td>
-								</tr>
-								<tr>
-									<td><strong> <span
-											class="glyphicon glyphicon-cloud text-primary"></span> Ngày
-											sinh
-									</strong></td>
-									<td class="text-primary">30/2/1990</td>
-								</tr>
-								<tr>
-									<td><strong> <span
-											class="glyphicon glyphicon-bookmark text-primary"></span>
-											Username
-									</strong></td>
-									<td class="text-primary">nguyenvana</td>
-								</tr>
-								<tr>
-									<td><strong> <span
-											class="glyphicon glyphicon-eye-open text-primary"></span>
-											Role
-									</strong></td>
-									<td class="text-primary">Admin</td>
-								</tr>
-								<tr>
-									<td><strong> <span
-											class="glyphicon glyphicon-envelope text-primary"></span>
-											liên hệ
-									</strong></td>
-									<td class="text-primary">noreply@email.com</td>
-								</tr>
-								<tr>
-									<td><strong> <span
-											class="glyphicon glyphicon-calendar text-primary"></span>
-											giới thiệu
-									</strong></td>
-									<td class="text-primary">cán bộ tổ công nghệ</td>
-								</tr>
-								<tr>
-									<td><strong> <span
-											class="glyphicon glyphicon-calendar text-primary"></span> cập
-											nhật ngày
-									</strong></td>
-									<td class="text-primary">20 jul 20014 20:00:00</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
 		</div>
 
 	</div>

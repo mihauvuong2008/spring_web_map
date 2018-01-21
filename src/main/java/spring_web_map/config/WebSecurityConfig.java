@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.transaction.annotation.Transactional;
 
-import spring_web_map.authentication.MyUserDetailsService;
+import spring_web_map.authentication.MyDBAuthenticationService;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +18,7 @@ import spring_web_map.authentication.MyUserDetailsService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private MyUserDetailsService myUserDetailsService;
+	private MyDBAuthenticationService myUserDetailsService;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -42,9 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Trang /userInfo yêu cầu phải login với vai trò USER hoặc ADMIN.
 		// Nếu chưa login, nó sẽ redirect tới trang /login.
-		http.authorizeRequests()
-				.antMatchers("/userInfo", "/main", "/thietbi_cauhinh", "/tainguyen", "/lienhe", "/userManager")
-				.access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/userInfo", "/main", "/thietbi_cauhinh", "/tainguyen", "/lienhe",
+				"/userManager", "/userView", "/addUser").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
 		// Trang chỉ dành cho ADMIN
 		http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");

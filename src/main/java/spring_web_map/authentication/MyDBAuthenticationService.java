@@ -16,14 +16,13 @@ import spring_web_map.dao.UserInfoDAO;
 import spring_web_map.model.UserInfo;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class MyDBAuthenticationService implements UserDetailsService {
 
 	@Autowired
 	private UserInfoDAO userInfoDAO;
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserInfo userInfo = userInfoDAO.findUserInfo(username);
-		System.out.println("UserInfo= " + userInfo);
 
 		if (userInfo == null) {
 			throw new UsernameNotFoundException("User " + username + " was not found in the database");

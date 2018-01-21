@@ -1,16 +1,19 @@
 /*menu*/
 #contentWrapper {
 	padding-top: 2px;
-	display: inline-block;
+	display: flex;
 }
 
 #contentleft {
-	display: inline-block;
+	
 }
 
 #contentright {
-	display: inline-block;
 	vertical-align: top;
+	width: 100%;
+	overflow: hidden;
+	margin-left: 5px;
+	margin-top: 5px;
 }
 /**
  * Styling navigation
@@ -127,7 +130,6 @@ label>span {
 	-webkit-transition: -webkit-transform .65s ease;
 	transition: transform .65s ease;
 }
-
 
 .nav__list input[type=checkbox]:checked+label>span {
 	-webkit-transform: rotate(90deg);

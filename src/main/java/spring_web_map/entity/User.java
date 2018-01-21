@@ -9,6 +9,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "Users")
 public class User {
@@ -16,16 +18,18 @@ public class User {
 	private String username;
 	private String password;
 	private String hoten;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
 	private Date ngaysinh;
 	private String lienhe;
 	private String gioithieu;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
 	private Date last_modify;
-	private boolean enabled;
+	private int enabled;
 
 	@Id
-	@Column(name = "Username", length = 36, nullable = false)
+	@Column(name = "Username", length = 50, nullable = false)
 	public String getUsername() {
 		return username;
 	}
@@ -34,7 +38,7 @@ public class User {
 		this.username = username;
 	}
 
-	@Column(name = "Password", length = 36, nullable = false)
+	@Column(name = "Password", length = 50, nullable = false)
 	public String getPassword() {
 		return password;
 	}
@@ -89,11 +93,11 @@ public class User {
 	}
 
 	@Column(name = "enabled", nullable = false)
-	public boolean isEnabled() {
+	public int isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
 
