@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,7 +33,7 @@ public class MainPageController {
 	@Autowired
 	UserInfoDAO userInfoDAO;
 
-	@Autowired(required=true)
+	@Autowired(required = true)
 	private UserValidator userValidator;
 
 	@RequestMapping("/main")
@@ -153,10 +154,10 @@ public class MainPageController {
 	// Set a form validator
 	@InitBinder
 	protected void initBinder(WebDataBinder dataBinder) {
-		dataBinder.registerCustomEditor( Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));   
+		dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));
 		// Form mục tiêu
 		Object target = dataBinder.getTarget();
-		
+
 		if (target == null) {
 			return;
 		}
@@ -169,8 +170,7 @@ public class MainPageController {
 
 	@RequestMapping(value = "/saveUserInfo", method = RequestMethod.POST)
 	public String saveApplicant(Model model, //
-			@ModelAttribute("userInfo") 
-			UserInfo userInfo, //
+			@ModelAttribute("userInfo") UserInfo userInfo, //
 			BindingResult result, //
 			final RedirectAttributes redirectAttributes) {
 		userInfo.setLast_modify(new Date());
@@ -190,4 +190,12 @@ public class MainPageController {
 
 	}
 
+	@RequestMapping("/deleteUser")
+	public String deleteApplicant(Model model, @RequestParam("username") String username) {
+		System.out.println("xoa: "+ username);
+		if (username != null) {
+			this.userInfoDAO.deleteUser(username);
+		}
+		return "redirect:/userView";
+	}
 }

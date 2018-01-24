@@ -94,4 +94,11 @@ public class UserInfoDAO {
 		crit.add(Restrictions.eq("username", userName));
 		return (User) crit.uniqueResult();
 	}
+	
+    public void deleteUser(String username) {
+        User user = this.findUser(username);
+        if (user != null) {
+            this.sessionFactory.getCurrentSession().delete(user);
+        }
+    }
 }
