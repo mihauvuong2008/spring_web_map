@@ -1,7 +1,13 @@
-package spring_web_map.model;
+package spring_web_map.entity;
 
-public class TuyencapInfo {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Tuyencap")
+public class Tuyencap {
 	private int tuyen_cap_id;
 	private String ten_tuyen_cap;
 	private int chieu_dai_tuyen_cap;
@@ -10,23 +16,8 @@ public class TuyencapInfo {
 	private int vi_tri_diem_cuoi;
 	private String mo_ta_tuyen_cap;
 
-	// Không thay đổi Constructor này, nó được sử dụng trong Hibernate Query
-	public TuyencapInfo(int tUYEN_CAP_ID, String tEN_TUYEN_CAP, int cHIEU_DAI_TUYEN_CAP, int sO_CORE,
-			int vI_TRI_DIEM_DAU_ID, int vI_TRI_DIEM_CUOI_ID, String mO_TA_TUYEN_CAP) {
-		super();
-		tuyen_cap_id = tUYEN_CAP_ID;
-		ten_tuyen_cap = tEN_TUYEN_CAP;
-		chieu_dai_tuyen_cap = cHIEU_DAI_TUYEN_CAP;
-		so_core = sO_CORE;
-		vi_tri_diem_dau_id = vI_TRI_DIEM_DAU_ID;
-		vi_tri_diem_cuoi = vI_TRI_DIEM_CUOI_ID;
-		mo_ta_tuyen_cap = mO_TA_TUYEN_CAP;
-	}
-
-	public TuyencapInfo() {
-		// TODO Auto-generated constructor stub
-	}
-
+	@Id
+	@Column(name = "tuyen_cap_id", nullable = false)
 	public int getTuyen_cap_id() {
 		return tuyen_cap_id;
 	}
@@ -35,6 +26,7 @@ public class TuyencapInfo {
 		this.tuyen_cap_id = tuyen_cap_id;
 	}
 
+	@Column(name = "ten_tuyen_cap", length = 300, nullable = false)
 	public String getTen_tuyen_cap() {
 		return ten_tuyen_cap;
 	}
@@ -43,6 +35,7 @@ public class TuyencapInfo {
 		this.ten_tuyen_cap = ten_tuyen_cap;
 	}
 
+	@Column(name = "chieu_dai_tuyen_cap", nullable = false)
 	public int getChieu_dai_tuyen_cap() {
 		return chieu_dai_tuyen_cap;
 	}
@@ -51,6 +44,7 @@ public class TuyencapInfo {
 		this.chieu_dai_tuyen_cap = chieu_dai_tuyen_cap;
 	}
 
+	@Column(name = "so_core", nullable = false)
 	public int getSo_core() {
 		return so_core;
 	}
@@ -59,6 +53,7 @@ public class TuyencapInfo {
 		this.so_core = so_core;
 	}
 
+	@Column(name = "vi_tri_diem_dau_id", nullable = false)
 	public int getVi_tri_diem_dau_id() {
 		return vi_tri_diem_dau_id;
 	}
@@ -67,6 +62,7 @@ public class TuyencapInfo {
 		this.vi_tri_diem_dau_id = vi_tri_diem_dau_id;
 	}
 
+	@Column(name = "vi_tri_diem_cuoi", nullable = false)
 	public int getVi_tri_diem_cuoi() {
 		return vi_tri_diem_cuoi;
 	}
@@ -75,6 +71,7 @@ public class TuyencapInfo {
 		this.vi_tri_diem_cuoi = vi_tri_diem_cuoi;
 	}
 
+	@Column(name = "mo_ta_tuyen_cap", length = 500, nullable = false)
 	public String getMo_ta_tuyen_cap() {
 		return mo_ta_tuyen_cap;
 	}

@@ -21,6 +21,7 @@
 				<th>Liên hệ</th>
 				<th>Giới thiệu</th>
 				<th>Ngày cập nhật</th>
+				<th>Thay đổi</th>
 				<th>Xóa</th>
 			</tr>
 			<c:forEach var="user" items="${userData}" varStatus="status">
@@ -31,24 +32,35 @@
 					<td>${user.getLienhe()}</td>
 					<td>${user.getGioithieu()}</td>
 					<td>${user.getLast_modify()}</td>
-					<td><input type="submit" class="close"
-						onclick="yesNoBox('${user.getUserName()}')" data-dismiss="alert">
-						<span aria-hidden="true">×</span> <span class="sr-only">Close</span>
-						</input></td>
+					<td>
+						<input type="submit" class="close" onclick="gotoEditPage('${user.getUserName()}')" data-dismiss="alert">
+						sửa đổi
+						</input>
+					</td>
+					<td>
+						<input type="submit" class="close" onclick="yesNoBox('${user.getUserName()}')" data-dismiss="alert">
+						Xóa
+						</input>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
 	<script>
-		function yesNoBox() {
-			var link = "${pageContext.request.contextPath}/deleteUser?username=" + arguments[0];
-			var answer = confirm("Xóa tài khoản: "+link+"?");
-			if (answer) {
-				location.href = link;
-			} else {
-				//some code
-			}
+	
+	function gotoEditPage() {
+		var link = "${pageContext.request.contextPath}/userManager?subPageParam=editUser " + arguments[0];
+		location.href = link;
 		}
+	function yesNoBox() {
+		var link = "${pageContext.request.contextPath}/deleteUser?username=" + arguments[0];
+		var answer = confirm("Xóa tài khoản: "+link+"?");
+		if (answer) {
+			location.href = link;
+		} else {
+			//some code
+		}
+	}
 	</script>
 </body>
 </html>

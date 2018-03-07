@@ -13,13 +13,20 @@
 	src=${pageContext.request.contextPath}/js/jquery.min.js></script>
 </head>
 
-<body>
+<body onload="
+			// Load on first time
+			var link ='${pageContext.request.contextPath}/${subPageParam}';
+			var x = '${subPageParam2}'.localeCompare('null');
+			if(x!=0){
+				link = link.concat('?username=${subPageParam2}');
+			};
+			 $('.loaded_content').load(link); ">
 	<jsp:include page="menu.jsp" />
 
 	<script>
 		// hightlight menu ÄÃ£ chá»n
 		setActiveLink("link6");
-		
+
 		$(document).ready(function() {
 			// your on click function here
 			$('.loadContent').click(function(event) {
@@ -35,12 +42,7 @@
 		<div id="contentleft">
 			<nav class="nav" role="navigation">
 				<ul class="nav__list">
-					<li>
-						<input id="group-1" type="checkbox" hidden=true /> 
-						<label class="loadContent" href="#" for="group-1">
-							<span class="fa fa-angle-right"></span> Tài khoản 
-						</label>
-					</li>
+				
 					<li>
 						<input id="group-2" type="checkbox" hidden=true checked/> 
 						<label for="group-2"> <span class="fa fa-angle-right" ></span>
@@ -48,10 +50,13 @@
 						</label>
 						<ul class="group-list">
 							<li>
-								<a class="loadContent" href=${pageContext.request.contextPath}/addUser>Thêm tài khoản</a>
+								<a class="loadContent" href=${pageContext.request.contextPath}/addUser>Tạo tài khoản mới</a>
 							</li>
 							<li>
 								<a class="loadContent" id ="danhsach" href=${pageContext.request.contextPath}/userView>Danh sách tài khoản</a>
+							</li>
+							<li>
+								<a class="loadContent" id ="danhsach" href=${pageContext.request.contextPath}/userView>Cài đặt chung</a>
 							</li>
 							<input id="sub-group-2" type="checkbox" hidden=true />
 						</ul>
@@ -62,16 +67,16 @@
 						<ul class="group-list">
 							<li><a class="loadContent" href="#">Thêm quyền</a></li>
 							<li><a class="loadContent" href="#">Danh sách quyền</a></li>
+							<li><a class="loadContent" href="#">Phân quyền</a></li>
 							<input id="sub-group-3" type="checkbox" hidden=true />
 						</ul>
 					</li>
-
-					<li>
-						<input id="group-4" type="checkbox" hidden=true /> 
-							<label class="loadContent" href="#" for="group-4">
-								<span class="fa fa-angle-right"></span> Phân quyền
-							</label>
-					</li>
+<!-- 					<li> -->
+<!-- 						<input id="group-4" type="checkbox" hidden=true />  -->
+<!-- 							<label class="loadContent" href="#" for="group-4"> -->
+<!-- 								<span class="fa fa-angle-right"></span> Phân quyền -->
+<!-- 							</label> -->
+<!-- 					</li> -->
 				</ul>
 			</nav>
 		</div>

@@ -22,8 +22,8 @@ public class UserInfo {
 		this.userName = userName;
 		this.password = password;
 		this.hoten = hoten;
-		this.hoten = hoten;
 		this.ngaysinh = ngaysinh;
+		this.gioithieu = gioithieu;
 		this.lienhe = lienhe;
 		this.last_modify = last_modify;
 	}

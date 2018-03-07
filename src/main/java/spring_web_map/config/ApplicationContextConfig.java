@@ -31,7 +31,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * package ngocdong.group.mynoipservice.
  */
 
+// @Configuration là một annotation, nó được chú thích trên một class, class này
+// sẽ định nghĩa các Spring BEAN.
 @Configuration
+
+// @ComponentScan - Nói cho Spring các package để tìm kiếm các Spring BEAN khác,
+// Spring sẽ quét (scan) các package đó để tìm kiếm.
 @ComponentScan("spring_web_map.*")
 @EnableTransactionManagement
 // Load to Environment.
@@ -88,7 +93,7 @@ public class ApplicationContextConfig {
 			properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
 			properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 			properties.put("current_session_context_class", env.getProperty("current_session_context_class"));
-			
+
 			LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 
 			// Package contain entity classes

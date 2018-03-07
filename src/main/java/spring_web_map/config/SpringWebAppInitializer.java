@@ -19,6 +19,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class SpringWebAppInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext servletContext) throws ServletException {
+		//tao cac Bean tu class cau hinh
 		AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
 		appContext.register(ApplicationContextConfig.class);
 
@@ -38,5 +39,4 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
 		fr.setInitParameter("forceEncoding", "true");
 		fr.addMappingForUrlPatterns(null, true, "/*");
 	}
-
 }

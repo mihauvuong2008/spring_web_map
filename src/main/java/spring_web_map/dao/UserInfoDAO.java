@@ -17,6 +17,9 @@ import spring_web_map.model.UserInfo;
 
 @Transactional
 @Repository
+// Không có sự khác biệt về cách sử dụng của @Service, @Component và
+// @Repository, bạn sử dụng để chú thích trên các class của bạn nên phù hợp với
+// ý nghĩa và ngữ cảnh trong ứng dụng.
 public class UserInfoDAO {
 
 	@Autowired
@@ -50,7 +53,7 @@ public class UserInfoDAO {
 
 	public List<UserInfo> getAllUser() {
 		String sql = "Select new " + UserInfo.class.getName()
-				+ "(u.username,u.password,u.hoten,u.ngaysinh,u.lienhe,u.gioithieu,u.last_modify) "//
+				+ "(u.username, u.password, u.hoten, u.ngaysinh, u.lienhe, u.gioithieu, u.last_modify) "//
 				+ " from " + User.class.getName() + " u";
 
 		Session session = sessionFactory.getCurrentSession();
@@ -88,17 +91,18 @@ public class UserInfoDAO {
 		}
 	}
 
-	private User findUser(String userName) {
+	public User findUser(String userName) {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria crit = session.createCriteria(User.class);
 		crit.add(Restrictions.eq("username", userName));
 		return (User) crit.uniqueResult();
 	}
-	
-    public void deleteUser(String username) {
-        User user = this.findUser(username);
-        if (user != null) {
-            this.sessionFactory.getCurrentSession().delete(user);
-        }
-    }
+
+	public void deleteUser(String username) {
+		User user = this.findUser(username);
+		if (user != null) {
+			this.sessionFactory.getCurrentSession().delete(user);
+		}
+	}
+
 }

@@ -119,7 +119,7 @@
 
 .nav__list input[type=checkbox]:checked+label+ul {
 	/* reset the height when checkbox is checked */
-	max-height: 100px;
+	max-height: 150px;
 }
 
 /**

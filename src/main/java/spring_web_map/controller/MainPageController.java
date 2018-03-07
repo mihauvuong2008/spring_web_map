@@ -3,7 +3,6 @@ package spring_web_map.controller;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import spring_web_map.dao.UserInfoDAO;
+import spring_web_map.entity.User;
+import spring_web_map.model.TuyencapInfo;
 import spring_web_map.model.UserInfo;
 import spring_web_map.validator.UserValidator;
 
@@ -91,15 +92,21 @@ public class MainPageController {
 	}
 
 	@RequestMapping(value = "/userManager", method = RequestMethod.GET)
-	public String userManager(Model model, Principal principal) {
+	public String userManager(Model model, @RequestParam("subPageParam") String subPageParam, Principal principal) {
 
 		// Sau khi user login thanh cong se co principal
 		String userName = principal.getName();
 
-		System.out.println("User Name: " + userName);
-		List<UserInfo> userData = userInfoDAO.getAllUser();
-		model.addAttribute("userData", userData);
-
+		// System.out.println("User Name: " + userName);
+		// List<UserInfo> userData = userInfoDAO.getAllUser();
+		// model.addAttribute("userData", userData);
+		String[] paramList = subPageParam.split(" ");
+		model.addAttribute("subPageParam", paramList[0]);
+		if (paramList.length > 1) {
+			model.addAttribute("subPageParam2", paramList[1]);
+		} else {
+			model.addAttribute("subPageParam2", "null");
+		}
 		return "userManager";
 	}
 
@@ -130,18 +137,15 @@ public class MainPageController {
 		List<UserInfo> userData = userInfoDAO.getAllUser();
 		model.addAttribute("userData", userData);
 		return "userView";
-
 	}
 
 	private String formUserInfo(Model model, UserInfo userInfo) {
 		model.addAttribute("userInfo", userInfo);
-
 		if (userInfo.getUserName() == null) {
-			model.addAttribute("formTitle", "Create Applicant");
+			model.addAttribute("formTitle", "Tạo Tài khoản người dùng");
 		} else {
-			model.addAttribute("formTitle", "Edit Applicant");
+			model.addAttribute("formTitle", "Thay đổi thông tin tài khoản người dùng");
 		}
-
 		return "add_editUser";
 	}
 
@@ -149,6 +153,27 @@ public class MainPageController {
 	public String AddUser(Model model) {
 		UserInfo userInfo = new UserInfo();
 		return this.formUserInfo(model, userInfo);
+	}
+
+	@RequestMapping("/editUser")
+	public String EditUser(Model model, @RequestParam("username") String username) {
+		User user = this.userInfoDAO.findUser(username);
+		UserInfo userInfo = convertUserToUserInfo(user);
+		return this.formUserInfo(model, userInfo);
+	}
+
+	private UserInfo convertUserToUserInfo(User user) {
+		UserInfo userInfo = new UserInfo();
+		if (user != null) {
+			userInfo.setUserName(user.getUsername());
+			userInfo.setPassword(user.getPassword());
+			userInfo.setHoten(user.getHoten());
+			userInfo.setNgaysinh(user.getNgaysinh());
+			userInfo.setLienhe(user.getLienhe());
+			userInfo.setGioithieu(user.getGioithieu());
+			userInfo.setLast_modify(user.getLast_modify());
+		}
+		return userInfo;
 	}
 
 	// Set a form validator
@@ -169,7 +194,7 @@ public class MainPageController {
 	}
 
 	@RequestMapping(value = "/saveUserInfo", method = RequestMethod.POST)
-	public String saveApplicant(Model model, //
+	public String saveUserInfo(Model model, //
 			@ModelAttribute("userInfo") UserInfo userInfo, //
 			BindingResult result, //
 			final RedirectAttributes redirectAttributes) {
@@ -186,16 +211,34 @@ public class MainPageController {
 		// Add message to flash scope
 		redirectAttributes.addFlashAttribute("message", "Save Applicant Successful");
 
-		return "redirect:/userView";
+		return "redirect:/userManager?subPageParam=userView";
 
 	}
 
 	@RequestMapping("/deleteUser")
-	public String deleteApplicant(Model model, @RequestParam("username") String username) {
-		System.out.println("xoa: "+ username);
+	public String deleteUser(Model model, @RequestParam("username") String username) {
+		System.out.println("xoa: " + username);
 		if (username != null) {
 			this.userInfoDAO.deleteUser(username);
 		}
-		return "redirect:/userView";
+		return "redirect:/userManager?subPageParam=userView";
+	}
+
+	@RequestMapping("/addTuyencap")
+	public String addTuyencap(Model model) {
+		TuyencapInfo tuyencapInfo = new TuyencapInfo();
+		return this.formTuyencapInfo(model, tuyencapInfo);
+	}
+
+	private String formTuyencapInfo(Model model, TuyencapInfo tuyencapInfo) {
+		model.addAttribute("tuyencapInfo", tuyencapInfo);
+
+		if (tuyencapInfo.getTuyen_cap_id() == 0) {
+			model.addAttribute("formTitle", "Thêm tuyến cáp");
+		} else {
+			model.addAttribute("formTitle", "thay đổi thông tin tuyến cáp");
+		}
+
+		return "add_editTuyencap";
 	}
 }

@@ -1,8 +1,9 @@
-<!doctype html>
-<html lang=''>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <head>
-<meta charset='utf-8' />
 <title>Hạ tầng truyền dẫn</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,5 +18,7 @@
 		// hightlight menu đã chọn
 		setActiveLink("link2");
 	</script>
+	<a href=${pageContext.request.contextPath}/addTuyencap>add tuyen
+		cap</a>
 </body>
 </html>

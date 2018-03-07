@@ -10,9 +10,9 @@ PASSWORD VARCHAR(36) not null,
 LAST_MODIFY DATE,
 ENABLED  smallint not null
 ) ;
- 
+
 ---------------------
- 
+
 -- Create table
 create table USER_ROLES
 (
@@ -29,7 +29,6 @@ X_DATA bigint not null,
 Y_DATA bigint not null
 ) ;
 
-
 -- Create table
 create table TUYEN_CAP
 (
@@ -40,8 +39,8 @@ SO_CORE integer,
 VI_TRI_DIEM_DAU_ID SERIAL not null,
 VI_TRI_DIEM_CUOI_ID SERIAL not null,
 MO_TA_TUYEN_CAP VARCHAR(500) not null,
-  FOREIGN KEY   (VI_TRI_DIEM_DAU_ID) REFERENCES POINT(POINT_ID),
-  FOREIGN KEY   (VI_TRI_DIEM_CUOI_ID) REFERENCES POINT(POINT_ID)
+FOREIGN KEY (VI_TRI_DIEM_DAU_ID) REFERENCES POINT(POINT_ID),
+FOREIGN KEY (VI_TRI_DIEM_CUOI_ID) REFERENCES POINT(POINT_ID)
 );
 
 create table HAM_CAP
@@ -50,8 +49,8 @@ HAM_CAP_ID  SERIAL PRIMARY KEY,
 TEN_HAM_CAP VARCHAR(300) not null,
 TREO_NGAM smallint,
 VI_TRI_ID integer not null,
-  FOREIGN KEY (VI_TRI_ID) REFERENCES POINT(POINT_ID)
-) ;
+FOREIGN KEY (VI_TRI_ID) REFERENCES POINT(POINT_ID)
+);
 
 create table MANG_XONG
 (
