@@ -20,8 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import spring_web_map.dao.PointInfoDAO;
 import spring_web_map.dao.UserInfoDAO;
+import spring_web_map.entity.Point;
 import spring_web_map.entity.User;
+import spring_web_map.model.HamcapInfo;
+import spring_web_map.model.PointInfo;
 import spring_web_map.model.TuyencapInfo;
 import spring_web_map.model.UserInfo;
 import spring_web_map.validator.UserValidator;
@@ -33,6 +37,8 @@ public class MainPageController {
 
 	@Autowired
 	UserInfoDAO userInfoDAO;
+	@Autowired
+	private PointInfoDAO pointInfoDAO;
 
 	@Autowired(required = true)
 	private UserValidator userValidator;
@@ -55,10 +61,16 @@ public class MainPageController {
 	}
 
 	@RequestMapping("/thietbi_cauhinh")
-	public String thietbi_cauhinh(Model model) {
+	public String thietbi_cauhinh(Model model, @RequestParam("subPageParam") String subPageParam) {
 
 		model.addAttribute("hoàn tất!", "HẠ TẦNG TRUYỀN DẪN");
-
+		String[] paramList = subPageParam.split(" ");
+		model.addAttribute("subPageParam", paramList[0]);
+		if (paramList.length > 1) {
+			model.addAttribute("subPageParam2", paramList[1]);
+		} else {
+			model.addAttribute("subPageParam2", "null");
+		}
 		return "thietbi_cauhinh";
 
 	}
@@ -95,7 +107,7 @@ public class MainPageController {
 	public String userManager(Model model, @RequestParam("subPageParam") String subPageParam, Principal principal) {
 
 		// Sau khi user login thanh cong se co principal
-		String userName = principal.getName();
+		// String userName = principal.getName();
 
 		// System.out.println("User Name: " + userName);
 		// List<UserInfo> userData = userInfoDAO.getAllUser();
@@ -240,5 +252,94 @@ public class MainPageController {
 		}
 
 		return "add_editTuyencap";
+	}
+
+	@RequestMapping("/addHamcap")
+	public String addHamcap(Model model) {
+		HamcapInfo hamcapInfo = new HamcapInfo();
+		return this.formHamcap(model, hamcapInfo);
+	}
+
+	private String formHamcap(Model model, HamcapInfo hamcapInfo) {
+		model.addAttribute("hamcapInfo", hamcapInfo);
+
+		if (hamcapInfo.getHam_cap_id() == 0) {
+			model.addAttribute("formTitle", "Thêm Vị trí hầm cáp");
+		} else {
+			model.addAttribute("formTitle", "thay đổi thông tin Vị trí hầm cáp");
+		}
+
+		return "add_editHamcap";
+	}
+
+	@RequestMapping("/addPoint")
+	public String addPoint(Model model) {
+		PointInfo pointInfo = new PointInfo();
+		return this.formPointInfo(model, pointInfo);
+	}
+
+	@RequestMapping("/editPoint")
+	public String EditUser(Model model, @RequestParam("point_id") int point_id) {
+		Point point = this.pointInfoDAO.findPoint(point_id);
+		PointInfo pointInfo = convertPointToPointInfo(point);
+		return this.formPointInfo(model, pointInfo);
+	}
+
+	private PointInfo convertPointToPointInfo(Point point) {
+		PointInfo pointInfo = new PointInfo();
+		if (point != null) {
+			pointInfo.setPoint_id(point.getPoint_id());
+			pointInfo.setX_data(point.getX_data());
+			pointInfo.setY_data(point.getY_data());
+		}
+		return pointInfo;
+	}
+
+	private String formPointInfo(Model model, PointInfo pointInfo) {
+		model.addAttribute("pointInfo", pointInfo);
+
+		if (pointInfo.getPoint_id() == 0) {
+			model.addAttribute("formTitle", "Thêm Vị trí");
+		} else {
+			model.addAttribute("formTitle", "thay đổi Tọa độ Vị trí");
+		}
+
+		return "add_editPoint";
+	}
+
+	@RequestMapping(value = "/savePointInfo", method = RequestMethod.POST)
+	public String savePointInfo(Model model, //
+			@ModelAttribute("pointInfo") PointInfo pointInfo, //
+			BindingResult result, //
+			final RedirectAttributes redirectAttributes) {
+		// Nếu validate có lỗi.
+		if (result.hasErrors()) {
+			return this.formPointInfo(model, pointInfo);
+		}
+
+		this.pointInfoDAO.savePointInfo(pointInfo);
+
+		// Important!!: Need @EnableWebMvc
+		// Add message to flash scope
+		redirectAttributes.addFlashAttribute("message", "Save Applicant Successful");
+
+		return "redirect:/thietbi_cauhinh?subPageParam=pointView";
+	}
+
+	@RequestMapping("/pointView")
+	public String ListPoint(Model model) {
+		// map den trang userView.jsp, gui theo userdata
+		List<PointInfo> userData = pointInfoDAO.getAllPoint();
+		model.addAttribute("pointData", userData);
+		return "pointView";
+	}
+
+	@RequestMapping("/deletePoint")
+	public String deletePoint(Model model, @RequestParam("point_id") int point_id) {
+		System.out.println("xoa: " + point_id);
+		if (point_id >= 0) {
+			this.pointInfoDAO.deletePoint(point_id);
+		}
+		return "redirect:/thietbi_cauhinh?subPageParam=pointView";
 	}
 }

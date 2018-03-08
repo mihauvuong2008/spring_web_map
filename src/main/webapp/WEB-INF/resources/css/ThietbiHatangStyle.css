@@ -1,0 +1,79 @@
+/*menu*/
+#contentWrapper {
+	padding-top: 2px;
+	display: flex;
+}
+
+#contentleft {
+	
+}
+
+#contentright {
+	vertical-align: top;
+	width: 100%;
+	overflow: hidden;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+/**
+ * Styling navigation
+ */
+.nav {
+	padding-top: 2px;
+	padding-left: 5px;
+	width: 220px;
+	height: 100vh;
+	background: #030303;
+	width: 220px;
+}
+
+.nav ul, li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline
+}
+
+.nav ol, ul {
+	list-style: none
+}
+
+.nav a {
+	text-decoration: none;
+}
+
+/**
+ * Styling top level items
+ */
+.nav a, .nav label {
+	display: block;
+	padding: .85rem;
+	color: #fff;
+	background-color: #151515;
+	box-shadow: inset 0 -1px #1d1d1d;
+	-webkit-transition: all .25s ease-in;
+	transition: all .25s ease-in;
+}
+
+.nav a:focus, .nav a:hover, .nav label:focus, .nav label:hover {
+	color: rgba(255, 255, 255, 0.5);
+	background: #030303;
+}
+
+.nav label {
+	cursor: pointer;
+}
+
+.check-with-label:checked+.label-for-check {
+	font-weight: bold;
+	background: #830303;
+}
+
+/**
+ * Rotating chevron icon
+ */
+label>span {
+	float: right;
+	-webkit-transition: -webkit-transform .65s ease;
+	transition: transform .65s ease;
+}

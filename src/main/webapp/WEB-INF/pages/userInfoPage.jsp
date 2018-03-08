@@ -31,8 +31,7 @@
 
 
 					<li><input id="group-4" type="checkbox" hidden=true /> <label
-						for="group-4"><span class="fa fa-angle-right"></span> Đổi
-							mật khẩu</label></li>
+						for="group-4"><span class="fa fa-angle-right"></span> Lịch sử hoạt động</label></li>
 				</ul>
 			</nav>
 		</div>

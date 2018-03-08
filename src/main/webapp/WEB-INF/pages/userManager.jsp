@@ -44,8 +44,8 @@
 				<ul class="nav__list">
 				
 					<li>
-						<input id="group-2" type="checkbox" hidden=true checked/> 
-						<label for="group-2"> <span class="fa fa-angle-right" ></span>
+						<input id="group-2" class="check-with-label" type="checkbox" hidden=true checked/> 
+						<label class="label-for-check" for="group-2"> <span class="fa fa-angle-right" ></span>
 							Quản lý tài khoản
 						</label>
 						<ul class="group-list">
@@ -56,14 +56,14 @@
 								<a class="loadContent" id ="danhsach" href=${pageContext.request.contextPath}/userView>Danh sách tài khoản</a>
 							</li>
 							<li>
-								<a class="loadContent" id ="danhsach" href=${pageContext.request.contextPath}/userView>Cài đặt chung</a>
+								<a class="loadContent" id ="caidat" href=${pageContext.request.contextPath}/userView>Cài đặt chung</a>
 							</li>
 							<input id="sub-group-2" type="checkbox" hidden=true />
 						</ul>
 					</li>
 					<li>
-						<input id="group-3" type="checkbox" hidden=true checked/> 
-							<label for="group-3"><span class="fa fa-angle-right"></span> Quản lý phân quyền</label>
+						<input id="group-3" class="check-with-label" type="checkbox" hidden=true checked/> 
+							<label class="label-for-check" for="group-3"><span class="fa fa-angle-right"></span> Quản lý phân quyền</label>
 						<ul class="group-list">
 							<li><a class="loadContent" href="#">Thêm quyền</a></li>
 							<li><a class="loadContent" href="#">Danh sách quyền</a></li>

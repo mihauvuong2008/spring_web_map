@@ -13,48 +13,51 @@
 	href=${pageContext.request.contextPath}/css/ApplicationStyle.css />
 </head>
 <body>
-	<p class="intro">Danh sách tài khoản</p>
+	<p class="intro">Danh sách Vị trí</p>
 	<hr>
 	<div class="content">
 		<table id="userlist">
 			<tr>
-				<th>Tên tài khoản</th>
-				<th>Họ và tên</th>
-				<th>Ngày sinh</th>
-				<th>Liên hệ</th>
-				<th>Giới thiệu</th>
-				<th>Ngày cập nhật</th>
+				<th>Mã Vị trí</th>
+				<th>Vĩ tuyến</th>
+				<th>Kinh tuyến</th>
 				<th>Thay đổi</th>
 				<th>Xóa</th>
 			</tr>
-			<c:forEach var="user" items="${userData}" varStatus="status">
+			<c:forEach var="point" items="${pointData}" varStatus="status">
 				<tr>
-					<td>${user.getUserName()}</td>
-					<td>${user.getHoten()}</td>
-					<td>${user.getNgaysinh()}</td>
-					<td>${user.getLienhe()}</td>
-					<td>${user.getGioithieu()}</td>
-					<td>${user.getLast_modify()}</td>
+					<td>${point.getPoint_id()}</td>
+					<td>${point.getX_data()}</td>
+					<td>${point.getY_data()}</td>
 					<td><input type="submit" class="close"
-						onclick="gotoEditPage('${user.getUserName()}')"
+						onclick="gotoEditPage('${point.getPoint_id()}')"
 						data-dismiss="alert"> sửa đổi </input></td>
 					<td><input type="submit" class="close"
-						onclick="yesNoBox('${user.getUserName()}')" data-dismiss="alert">
+						onclick="yesNoBox('${point.getPoint_id()}')" data-dismiss="alert">
 						Xóa </input></td>
 				</tr>
 			</c:forEach>
+
+			<tr>
+				<td><a
+					href=${pageContext.request.contextPath}/thietbi_cauhinh?subPageParam=addPoint>Thêm</a></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
 		</table>
 	</div>
 	<script>
 		function gotoEditPage() {
-			var link = "${pageContext.request.contextPath}/userManager?subPageParam=editUser "
+			var link = "${pageContext.request.contextPath}/thietbi_cauhinh?subPageParam=editPoint "
 					+ arguments[0];
 			location.href = link;
 		}
 		function yesNoBox() {
-			var link = "${pageContext.request.contextPath}/deleteUser?username="
+			var link = "${pageContext.request.contextPath}/deletePoint?point_id="
 					+ arguments[0];
-			var answer = confirm("Xóa tài khoản: " + link + "?");
+			var answer = confirm("Xóa Vị trí: " + link + "?");
 			if (answer) {
 				location.href = link;
 			} else {

@@ -64,6 +64,10 @@
 	cursor: pointer;
 }
 
+.check-with-label:checked + .label-for-check {
+  font-weight: bold;
+  background: #830303;
+}
 /**
  * Styling first level lists items
  */

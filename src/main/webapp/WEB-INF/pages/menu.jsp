@@ -12,12 +12,13 @@
 		<li id='link1'><a href=${pageContext.request.contextPath}/main>Bản
 				đồ</a></li>
 		<li id='link2'><a
-			href=${pageContext.request.contextPath}/thietbi_cauhinh>Thiết bị
-				- Hạ tầng</a></li>
+			href=${pageContext.request.contextPath}/thietbi_cauhinh?subPageParam=pointView>Thiết
+				bị - Hạ tầng</a></li>
 		<li id='link5'><a
 			href=${pageContext.request.contextPath}/userInfo>Tài khoản</a></li>
 		<li id='link6'><a
-			href=${pageContext.request.contextPath}/userManager?subPageParam=userView>Quản trị</a></li>
+			href=${pageContext.request.contextPath}/userManager?subPageParam=userView>Quản
+				trị</a></li>
 		<li style="float: right"><a
 			href=${pageContext.request.contextPath}/logout>Đăng xuất</a></li>
 		<li id='link4'><a href=${pageContext.request.contextPath}/lienhe>Liên
