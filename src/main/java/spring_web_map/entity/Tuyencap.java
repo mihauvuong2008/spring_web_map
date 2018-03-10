@@ -6,14 +6,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Tuyencap")
+@Table(name = "Tuyen_cap")
 public class Tuyencap {
 	private int tuyen_cap_id;
 	private String ten_tuyen_cap;
 	private int chieu_dai_tuyen_cap;
 	private int so_core;
 	private int vi_tri_diem_dau_id;
-	private int vi_tri_diem_cuoi;
+	private int vi_tri_diem_cuoi_id;
 	private String mo_ta_tuyen_cap;
 
 	@Id
@@ -61,14 +61,15 @@ public class Tuyencap {
 	public void setVi_tri_diem_dau_id(int vi_tri_diem_dau_id) {
 		this.vi_tri_diem_dau_id = vi_tri_diem_dau_id;
 	}
+ 
 
-	@Column(name = "vi_tri_diem_cuoi", nullable = false)
-	public int getVi_tri_diem_cuoi() {
-		return vi_tri_diem_cuoi;
+	@Column(name = "vi_tri_diem_cuoi_id", nullable = false)
+	public int getVi_tri_diem_cuoi_id() {
+		return vi_tri_diem_cuoi_id;
 	}
 
-	public void setVi_tri_diem_cuoi(int vi_tri_diem_cuoi) {
-		this.vi_tri_diem_cuoi = vi_tri_diem_cuoi;
+	public void setVi_tri_diem_cuoi_id(int vi_tri_diem_cuoi_id) {
+		this.vi_tri_diem_cuoi_id = vi_tri_diem_cuoi_id;
 	}
 
 	@Column(name = "mo_ta_tuyen_cap", length = 500, nullable = false)

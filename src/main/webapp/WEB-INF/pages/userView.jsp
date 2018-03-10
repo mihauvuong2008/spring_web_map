@@ -16,7 +16,7 @@
 	<p class="intro">Danh sách tài khoản</p>
 	<hr>
 	<div class="content">
-		<table id="userlist">
+		<table id="tableData">
 			<tr>
 				<th>Tên tài khoản</th>
 				<th>Họ và tên</th>

@@ -7,7 +7,7 @@ public class TuyencapInfo {
 	private int chieu_dai_tuyen_cap;
 	private int so_core;
 	private int vi_tri_diem_dau_id;
-	private int vi_tri_diem_cuoi;
+	private int vi_tri_diem_cuoi_id;
 	private String mo_ta_tuyen_cap;
 
 	// Không thay đổi Constructor này, nó được sử dụng trong Hibernate Query
@@ -19,7 +19,7 @@ public class TuyencapInfo {
 		chieu_dai_tuyen_cap = cHIEU_DAI_TUYEN_CAP;
 		so_core = sO_CORE;
 		vi_tri_diem_dau_id = vI_TRI_DIEM_DAU_ID;
-		vi_tri_diem_cuoi = vI_TRI_DIEM_CUOI_ID;
+		vi_tri_diem_cuoi_id = vI_TRI_DIEM_CUOI_ID;
 		mo_ta_tuyen_cap = mO_TA_TUYEN_CAP;
 	}
 
@@ -67,12 +67,12 @@ public class TuyencapInfo {
 		this.vi_tri_diem_dau_id = vi_tri_diem_dau_id;
 	}
 
-	public int getVi_tri_diem_cuoi() {
-		return vi_tri_diem_cuoi;
+	public int getVi_tri_diem_cuoi_id() {
+		return vi_tri_diem_cuoi_id;
 	}
 
-	public void setVi_tri_diem_cuoi(int vi_tri_diem_cuoi) {
-		this.vi_tri_diem_cuoi = vi_tri_diem_cuoi;
+	public void setVi_tri_diem_cuoi_id(int vi_tri_diem_cuoi_id) {
+		this.vi_tri_diem_cuoi_id = vi_tri_diem_cuoi_id;
 	}
 
 	public String getMo_ta_tuyen_cap() {

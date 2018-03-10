@@ -6,6 +6,8 @@
 	href=${pageContext.request.contextPath}/css/add_editTuyencap.css />
 <link rel="stylesheet" type="text/css"
 	href=${pageContext.request.contextPath}/css/ApplicationStyle.css />
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
@@ -18,8 +20,8 @@
 	<hr>
 
 	<div class="content">
-		<div class="container-contact100 container">
-			<form action="saveTuyencapInfo" method="POST"
+		<div class="container">
+			<form:form action="saveTuyencapInfo" method="POST"
 				modelAttribute="tuyencapInfo">
 
 				<div class="row">
@@ -28,8 +30,8 @@
 							*</label>
 					</div>
 					<div class="col-75">
-						<input id="Matuyencap" class="input100" type="text"
-							name="Matuyencap" placeholder="Mã tuyến cáp">
+						<form:input id="Matuyencap" class="input100" type="text"
+							name="Matuyencap" placeholder="Mã tuyến cáp" path="tuyen_cap_id" />
 					</div>
 				</div>
 
@@ -38,8 +40,9 @@
 						<label class="label-input100">Tên tuyến cáp *</label>
 					</div>
 					<div class="col-75">
-						<input id="Tentuyencap" class="input100" type="text"
-							name="Tentuyencap" placeholder="Tên Tuyến cáp">
+						<form:input id="Tentuyencap" class="input100" type="text"
+							name="Tentuyencap" placeholder="Tên Tuyến cáp"
+							path="ten_tuyen_cap" />
 					</div>
 				</div>
 
@@ -48,8 +51,9 @@
 						<label class="label-input100">Chiều dài *</label>
 					</div>
 					<div class="col-75">
-						<input id="Chieudai" class="input100" type="text" name="Chieudai"
-							placeholder="Chiều dài">
+						<form:input id="Chieudai" class="input100" type="text"
+							name="Chieudai" placeholder="Chiều dài"
+							path="chieu_dai_tuyen_cap" />
 					</div>
 				</div>
 
@@ -58,8 +62,8 @@
 						<label class="label-input100">Số core</label>
 					</div>
 					<div class="col-75">
-						<input id="Socore" class="input100" type="text" name="Socore"
-							placeholder="Số core">
+						<form:input id="Socore" class="input100" type="text" name="Socore"
+							placeholder="Số core" path="so_core" />
 					</div>
 				</div>
 
@@ -68,8 +72,9 @@
 						<label class="label-input100">ID Vị trí điểm đầu *</label>
 					</div>
 					<div class="col-75">
-						<input id="Diemdau" class="input100" type="text" name="Diemdau"
-							placeholder="ID Vị trí điểm đầu..."></input>
+						<form:input id="Diemdau" class="input100" type="text"
+							name="Diemdau" placeholder="ID Vị trí điểm đầu..."
+							path="vi_tri_diem_dau_id" />
 					</div>
 				</div>
 				<div class="row">
@@ -77,8 +82,9 @@
 						<label class="label-input100">ID Vị trí điểm cuối *</label>
 					</div>
 					<div class="col-75">
-						<input id="" Diemcuoi"" class="input100" type="text"
-							name="Diemcuoi" placeholder="ID Vị trí điểm cuối"></input>
+						<form:input id="Diemcuoi" class="input100" type="text"
+							name="Diemcuoi" placeholder="ID Vị trí điểm cuối"
+							path="vi_tri_diem_cuoi_id" />
 					</div>
 				</div>
 				<div class="row">
@@ -86,15 +92,15 @@
 						<label class="label-input100">Mô tả tuyến cáp *</label>
 					</div>
 					<div class="col-75">
-						<textarea id="message" class="input100" name="Gioithieu"
-							placeholder="Mô tả tuyến cáp..."></textarea>
+						<form:textarea id="message" class="input100" name="Gioithieu"
+							placeholder="Mô tả tuyến cáp..." path="mo_ta_tuyen_cap" />
 					</div>
 				</div>
 				<div class="row">
-					<input type="submit" value="Submit" /> <input type="submit"
-						href=${pageContext.request.contextPath}/userManager value="Cancel" />
+					<input type="submit" value="Submit" /> <input type="reset"
+						value="Reset" />
 				</div>
-			</form>
+			</form:form>
 		</div>
 	</div>
 </body>

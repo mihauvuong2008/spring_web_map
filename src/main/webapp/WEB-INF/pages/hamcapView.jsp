@@ -11,34 +11,37 @@
 	href=${pageContext.request.contextPath}/css/ApplicationStyle.css />
 </head>
 <body>
-	<p class="intro">Danh sách Vị trí</p>
+	<p class="intro">Danh sách Hầm cáp</p>
 	<hr>
 	<div class="content">
 		<table id="tableData">
 			<tr>
-				<th>Mã Vị trí</th>
-				<th>Vĩ tuyến</th>
-				<th>Kinh tuyến</th>
-				<th>Thay đổi</th>
+				<th>Mã Hầm cáp</th>
+				<th>Tên Hầm cáp</th>
+				<th>Trạng thái</th>
+				<th>Mã vị trí</th>
+				<th>thay đổi</th>
 				<th>Xóa</th>
 			</tr>
-			<c:forEach var="point" items="${pointData}" varStatus="status">
+			<c:forEach var="hamcap" items="${hamcapData}" varStatus="status">
 				<tr>
-					<td>${point.getPoint_id()}</td>
-					<td>${point.getX_data()}</td>
-					<td>${point.getY_data()}</td>
+					<td>${hamcap.getHam_cap_id()}</td>
+					<td>${hamcap.getTen_ham_cap()}</td>
+					<td>${hamcap.getTreo_ngam()}</td>
+					<td>${hamcap.getVi_tri_id()}</td>
 					<td><input type="submit" class="close"
-						onclick="gotoPointEditPage('${point.getPoint_id()}')"
+						onclick="gotoHam_capEditPage('${hamcap.getHam_cap_id()}')"
 						data-dismiss="alert"> sửa đổi </input></td>
 					<td><input type="submit" class="close"
-						onclick="PointyesNoBox('${point.getPoint_id()}')" data-dismiss="alert">
-						Xóa </input></td>
+						onclick="Ham_capyesNoBox('${hamcap.getHam_cap_id()}')"
+						data-dismiss="alert"> Xóa </input></td>
 				</tr>
 			</c:forEach>
 
 			<tr>
 				<td><a
-					href=${pageContext.request.contextPath}/thietbi_cauhinh?subPageParam=addPoint>Thêm</a></td>
+					href=${pageContext.request.contextPath}/thietbi_cauhinh?subPageParam=addHamcap>Thêm</a></td>
+				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -47,14 +50,13 @@
 		</table>
 	</div>
 	<script>
-		function gotoPointEditPage() {
-			var link = "${pageContext.request.contextPath}/thietbi_cauhinh?subPageParam=editPoint "
-					+ "?point_id=" + arguments[0] + "";
+		function gotoHam_capEditPage() {
+			var link = "${pageContext.request.contextPath}/thietbi_cauhinh?subPageParam=editHamcap "
+					+ "?hamcap_id=" + arguments[0] + "";
 			location.href = link;
 		}
-		
-		function PointyesNoBox() {
-			var link = "${pageContext.request.contextPath}/deletePoint?point_id="
+		function Ham_capyesNoBox() {
+			var link = "${pageContext.request.contextPath}/deleteHamcap?hamcap_id="
 					+ arguments[0];
 			var answer = confirm("Xóa Vị trí: " + link + "?");
 			if (answer) {

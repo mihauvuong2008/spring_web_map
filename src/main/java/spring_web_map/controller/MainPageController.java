@@ -20,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import spring_web_map.dao.HamcapInfoDAO;
 import spring_web_map.dao.PointInfoDAO;
+import spring_web_map.dao.TuyencapInfoDAO;
 import spring_web_map.dao.UserInfoDAO;
+import spring_web_map.entity.Hamcap;
 import spring_web_map.entity.Point;
+import spring_web_map.entity.Tuyencap;
 import spring_web_map.entity.User;
 import spring_web_map.model.HamcapInfo;
 import spring_web_map.model.PointInfo;
@@ -39,6 +43,11 @@ public class MainPageController {
 	UserInfoDAO userInfoDAO;
 	@Autowired
 	private PointInfoDAO pointInfoDAO;
+	@Autowired
+	private HamcapInfoDAO hamcapInfoDAO;
+
+	@Autowired
+	private TuyencapInfoDAO tuyencapInfoDAO;
 
 	@Autowired(required = true)
 	private UserValidator userValidator;
@@ -236,42 +245,175 @@ public class MainPageController {
 		return "redirect:/userManager?subPageParam=userView";
 	}
 
+	// tuyen cap srvlet
 	@RequestMapping("/addTuyencap")
 	public String addTuyencap(Model model) {
 		TuyencapInfo tuyencapInfo = new TuyencapInfo();
 		return this.formTuyencapInfo(model, tuyencapInfo);
 	}
 
-	private String formTuyencapInfo(Model model, TuyencapInfo tuyencapInfo) {
-		model.addAttribute("tuyencapInfo", tuyencapInfo);
+	@RequestMapping("/editTuyencap")
+	public String EditUser(Model model, @RequestParam("Tuyencap_id") int Tuyencap_id) {
+		Tuyencap Tuyencap = this.tuyencapInfoDAO.findTuyencap(Tuyencap_id);
+		System.out.println("edit:" + Tuyencap.toString());
+		TuyencapInfo TuyencapInfo = convertTuyencapToTuyencapInfo(Tuyencap);
+		return this.formTuyencapInfo(model, TuyencapInfo);
+	}
 
-		if (tuyencapInfo.getTuyen_cap_id() == 0) {
-			model.addAttribute("formTitle", "Thêm tuyến cáp");
+	private TuyencapInfo convertTuyencapToTuyencapInfo(Tuyencap Tuyencap) {
+		TuyencapInfo TuyencapInfo = new TuyencapInfo();
+		if (Tuyencap != null) {
+			TuyencapInfo.setTuyen_cap_id(Tuyencap.getTuyen_cap_id());
+			TuyencapInfo.setTen_tuyen_cap(Tuyencap.getTen_tuyen_cap());
+			TuyencapInfo.setChieu_dai_tuyen_cap(Tuyencap.getChieu_dai_tuyen_cap());
+			TuyencapInfo.setSo_core(Tuyencap.getSo_core());
+			TuyencapInfo.setVi_tri_diem_dau_id(Tuyencap.getVi_tri_diem_dau_id());
+			TuyencapInfo.setVi_tri_diem_cuoi_id(Tuyencap.getVi_tri_diem_cuoi_id());
+			TuyencapInfo.setMo_ta_tuyen_cap(Tuyencap.getMo_ta_tuyen_cap());
+		}
+		return TuyencapInfo;
+	}
+
+	private String formTuyencapInfo(Model model, TuyencapInfo TuyencapInfo) {
+		model.addAttribute("tuyencapInfo", TuyencapInfo);
+
+		if (TuyencapInfo.getTuyen_cap_id() == 0) {
+			model.addAttribute("formTitle", "Thêm Tuyến cáp");
+			model.addAttribute("mode", "add");
 		} else {
-			model.addAttribute("formTitle", "thay đổi thông tin tuyến cáp");
+			model.addAttribute("formTitle", "thay đổi thông tin Tuyến cáp");
+			model.addAttribute("mode", "edit");
 		}
 
 		return "add_editTuyencap";
 	}
 
+	@RequestMapping(value = "/saveTuyencapInfo", method = RequestMethod.POST)
+	public String saveTuyencapInfo(Model model, //
+			@ModelAttribute("TuyencapInfo") TuyencapInfo TuyencapInfo, //
+			BindingResult result, //
+			final RedirectAttributes redirectAttributes) {
+		System.out.println("Hầm cáp: " + TuyencapInfo.toString());
+		// Nếu validate có lỗi.
+		if (result.hasErrors()) {
+			return this.formTuyencapInfo(model, TuyencapInfo);
+		}
+
+		this.tuyencapInfoDAO.saveTuyencapInfo(TuyencapInfo);
+
+		// Important!!: Need @EnableWebMvc
+		// Add message to flash scope
+		redirectAttributes.addFlashAttribute("message", "Save Applicant Successful");
+
+		return "redirect:/thietbi_cauhinh?subPageParam=tuyencapView";
+	}
+
+	@RequestMapping("/tuyencapView")
+	public String ListTuyencap(Model model) {
+		// map den trang userView.jsp, gui theo userdata
+		List<TuyencapInfo> TuyencapData = tuyencapInfoDAO.getAllTuyencap();
+		model.addAttribute("tuyencapData", TuyencapData);
+		return "tuyencapView";
+	}
+
+	@RequestMapping("/deleteTuyencap")
+	public String deleteTuyencap(Model model, @RequestParam("tuyencap_id") int tuyencap_id) {
+		System.out.println("xoa: " + tuyencap_id);
+		if (tuyencap_id >= 0) {
+			this.tuyencapInfoDAO.deleteTuyencap(tuyencap_id);
+		}
+		return "redirect:/thietbi_cauhinh?subPageParam=tuyencapView";
+	}
+	// page vi tri cua ham svl
+
+	@RequestMapping("/vitriCuaham")
+	public String vitriCuaham(Model model) {
+		// map den trang userView.jsp, gui theo userdata
+		List<HamcapInfo> hamcapData = hamcapInfoDAO.getAllHamcap();
+		model.addAttribute("hamcapData", hamcapData);
+		List<PointInfo> pointData = pointInfoDAO.getAllPoint();
+		model.addAttribute("pointData", pointData);
+		return "vitriCuaham";
+	}
+
+	// hamcap servlet
 	@RequestMapping("/addHamcap")
 	public String addHamcap(Model model) {
 		HamcapInfo hamcapInfo = new HamcapInfo();
-		return this.formHamcap(model, hamcapInfo);
+		return this.formHamcapInfo(model, hamcapInfo);
 	}
 
-	private String formHamcap(Model model, HamcapInfo hamcapInfo) {
-		model.addAttribute("hamcapInfo", hamcapInfo);
+	@RequestMapping("/editHamcap")
+	public String EditHamcap(Model model, @RequestParam("hamcap_id") int Hamcap_id) {
+		Hamcap Hamcap = this.hamcapInfoDAO.findHamcap(Hamcap_id);
+		System.out.println("edit:" + Hamcap.toString());
+		HamcapInfo HamcapInfo = convertHamcapToHamcapInfo(Hamcap);
+		return this.formHamcapInfo(model, HamcapInfo);
+	}
 
-		if (hamcapInfo.getHam_cap_id() == 0) {
+	private HamcapInfo convertHamcapToHamcapInfo(Hamcap Hamcap) {
+		HamcapInfo HamcapInfo = new HamcapInfo();
+		if (Hamcap != null) {
+			HamcapInfo.setHam_cap_id(Hamcap.getHam_cap_id());
+			HamcapInfo.setTen_ham_cap(Hamcap.getTen_ham_cap());
+			HamcapInfo.setTreo_ngam(Hamcap.getTreo_ngam());
+			HamcapInfo.setVi_tri_id(Hamcap.getVi_tri_id());
+		}
+		return HamcapInfo;
+	}
+
+	private String formHamcapInfo(Model model, HamcapInfo HamcapInfo) {
+		model.addAttribute("hamcapInfo", HamcapInfo);
+
+		if (HamcapInfo.getHam_cap_id() == 0) {
 			model.addAttribute("formTitle", "Thêm Vị trí hầm cáp");
+			model.addAttribute("mode", "add");
 		} else {
 			model.addAttribute("formTitle", "thay đổi thông tin Vị trí hầm cáp");
+			model.addAttribute("mode", "edit");
 		}
 
 		return "add_editHamcap";
 	}
 
+	@RequestMapping(value = "/saveHamcapInfo", method = RequestMethod.POST)
+	public String saveHamcapInfo(Model model, //
+			@ModelAttribute("hamcapInfo") HamcapInfo HamcapInfo, //
+			BindingResult result, //
+			final RedirectAttributes redirectAttributes) {
+		System.out.println("Hầm cáp: " + HamcapInfo.toString());
+		// Nếu validate có lỗi.
+		if (result.hasErrors()) {
+			return this.formHamcapInfo(model, HamcapInfo);
+		}
+
+		this.hamcapInfoDAO.saveHamcapInfo(HamcapInfo);
+
+		// Important!!: Need @EnableWebMvc
+		// Add message to flash scope
+		redirectAttributes.addFlashAttribute("message", "Save Applicant Successful");
+
+		return "redirect:/thietbi_cauhinh?subPageParam=hamcapView";
+	}
+
+	@RequestMapping("/hamcapView")
+	public String ListHamcap(Model model) {
+		// map den trang userView.jsp, gui theo userdata
+		List<HamcapInfo> hamcapData = hamcapInfoDAO.getAllHamcap();
+		model.addAttribute("hamcapData", hamcapData);
+		return "hamcapView";
+	}
+
+	@RequestMapping("/deleteHamcap")
+	public String deleteHamcap(Model model, @RequestParam("hamcap_id") int Hamcap_id) {
+		System.out.println("xoa: " + Hamcap_id);
+		if (Hamcap_id >= 0) {
+			this.hamcapInfoDAO.deleteHamcap(Hamcap_id);
+		}
+		return "redirect:/thietbi_cauhinh?subPageParam=hamcapView";
+	}
+
+	// servlet Point
 	@RequestMapping("/addPoint")
 	public String addPoint(Model model) {
 		PointInfo pointInfo = new PointInfo();
@@ -279,7 +421,7 @@ public class MainPageController {
 	}
 
 	@RequestMapping("/editPoint")
-	public String EditUser(Model model, @RequestParam("point_id") int point_id) {
+	public String EditPoint(Model model, @RequestParam("point_id") int point_id) {
 		Point point = this.pointInfoDAO.findPoint(point_id);
 		PointInfo pointInfo = convertPointToPointInfo(point);
 		return this.formPointInfo(model, pointInfo);

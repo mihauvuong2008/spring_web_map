@@ -23,12 +23,11 @@ hr {
 }
 
 /* style for form */
-.container-contact100 * {
+.container * {
 	box-sizing: border-box;
 }
 
-.container-contact100 input[type=text], input[type=date], select,
-	textarea {
+.container input[type=text], input[type=date], select, textarea {
 	width: 100%;
 	padding: 9px;
 	border: 1px solid #ccc;
@@ -37,12 +36,14 @@ hr {
 	resize: vertical;
 }
 
-.container-contact100 label {
+.container label {
 	padding: 12px 12px 12px 0;
 	display: inline-block;
 }
 
-.container-contact100 input[type=submit] {
+.container input[type=submit], input[type=reset] {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 14px;
 	background-color: #4CAF50;
 	color: white;
 	padding: 9px 20px;
@@ -54,15 +55,16 @@ hr {
 	float: right;
 }
 
-.container-contact100 a {
-     appearance:button; /* For Good Browsers */
-     -moz-appearance:button; /* For Firefox */
-     -webkit-appearance:button; /* For Safari and Chrome */
- 
-     text-decoration: none;
+.container a {
+	appearance: button; /* For Good Browsers */
+	-moz-appearance: button; /* For Firefox */
+	-webkit-appearance: button; /* For Safari and Chrome */
+	/* 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
+	font-size: 14px;
+	text-decoration: none;
 	background-color: #4CAF50;
 	color: white;
-	padding: 7.5px 20px;
+	padding: 9px 20px;
 	margin-top: 8px;
 	margin-left: 6px;
 	border: none;
@@ -70,9 +72,11 @@ hr {
 	cursor: pointer;
 	float: right;
 }
-.container-contact100 input[type=submit]:hover {
+
+.container input[type=submit]:hover a {
 	background-color: #45a049;
 }
+
 ​
 .container {
 	border-radius: 5px;
@@ -80,13 +84,19 @@ hr {
 	padding: 20px;
 }
 
-.container-contact100 .col-25 {
+.container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+.container .col-25 {
 	float: left;
 	width: 25%;
 	margin-top: 1px;
 }
 
-.container-contact100 .col-75 {
+.container .col-75 {
 	float: left;
 	width: 75%;
 	margin-top: 6px;
@@ -105,4 +115,34 @@ hr {
 		width: 100%;
 		margin-top: 0;
 	}
+}
+
+/* Table Data Style */
+#tableData {
+	/* 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
+	font-size: 15px;
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#tableData td, #tableData th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#tableData tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#tableData tr:hover {
+	background-color: #ddd;
+}
+
+#tableData th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
 }

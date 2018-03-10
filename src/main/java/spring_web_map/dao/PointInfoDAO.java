@@ -12,9 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import spring_web_map.entity.Point;
-import spring_web_map.entity.User;
 import spring_web_map.model.PointInfo;
-import spring_web_map.model.UserInfo;
 
 @Transactional
 @Repository

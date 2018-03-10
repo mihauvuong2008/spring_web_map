@@ -18,7 +18,7 @@
 	<hr>
 	
 	<div class="content">
-		<div class="container-contact100 container">
+		<div class="container  ">
 			<form:form  action="saveUserInfo" method="POST"  modelAttribute="userInfo">
 			<% UserInfo userInfo=((UserInfo)request.getAttribute("userInfo"));%>
 		    <div class="row">
@@ -69,7 +69,7 @@
 		
 		    <div class="row">
 		   			<input type="submit" value="Submit"/>
-		   			<input type="submit" href=${pageContext.request.contextPath}/userManager value="Cancel"/>
+		   			<a type="submit" href=${pageContext.request.contextPath}/userManager?subPageParam=userView >Cancel</a>
 			</div>
 			</form:form >
 		</div>

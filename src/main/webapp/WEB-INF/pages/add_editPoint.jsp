@@ -18,7 +18,7 @@
 	<hr>
 
 	<div class="content">
-		<div class="container-contact100 container">
+		<div class="container  ">
 			<form:form action="savePointInfo" method="POST"
 				modelAttribute="pointInfo">
 				<div class="row">
